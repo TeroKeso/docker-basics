@@ -44,10 +44,15 @@ theme:
         accent: custom
 
 nav:
-  - 1 Windows Users: index.md
-  - 2 Windows License & Hyper-V: Windows_11_license_from_home_to_education_and_activate_Hyper-V.md
-  - 3 WSL & Docker: Windows_11_WSL.md
-  - 4 Mac Users: HAMK_BASIC_Software_MacUsers.md
+  - 1 Getting started: 1_gettingstarted.md
+  - 2 Docker images: 2_docker_images.md
+  - 3 Docker volumes: 3_dockervolumes.md
+  - 4 Docker compose: 4_dockercompose.md
+  - 5 Docker networks: 5_dockernetworks.md
+  - 6 Docker management: 6_dockermanagement.md
+  
+
+
 
 extra:
   social:
@@ -56,8 +61,8 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/school/hamk/
     - icon: fontawesome/solid/paper-plane
-      link: mailto:firstname.lastname@hamk.fi
-      alt: email
+#      link: mailto:firstname.lastname@hamk.fi
+#      alt: email
   status:
     new: New feature
     experimental: experimental
@@ -113,4 +118,4 @@ plugins:
 #  - search # must be on if plugins on
 
 copyright:
-  Copyright &copy; 2024 <a href="https://www.hamk.fi/en/" target="blank" >Häme University of Applied Sciences (HAMK)</a>
+  Copyright &copy; 2025 <a href="https://www.hamk.fi/en/" target="blank" >Häme University of Applied Sciences (HAMK)</a>
