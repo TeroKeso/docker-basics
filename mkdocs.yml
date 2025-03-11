@@ -1,5 +1,5 @@
 site_name: Devcontainer in codespace with Mkdocs Material
-repo_url: hamk-business-information-technology.io/docker-basics/
+repo_url: https://hamk-business-information-technology.io/docker-basics/
 edit_uri: edit/main/docs/ # to let content.action.edit / view redirect to `main`, not `master`
 repo_name: hamk-business-information-technology/docker-basics
 theme:
