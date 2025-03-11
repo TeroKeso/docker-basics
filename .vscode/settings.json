@@ -1,0 +1,12 @@
+{
+    "workbench.startupEditor": "terminal",
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor"
+    },
+    "extensions": [
+        "yahyabatulu.vscode-markdown-alert",
+        "bierner.github-markdown-preview",
+        "bierner.markdown-preview-github-styles",
+        "oderwat.indent-rainbow"
+    ]
+}
