@@ -18,7 +18,7 @@ The *getting started* guide on Docker has detailed instructions for setting up D
 ## Check your Docker Installation
 Once you are done installing Docker, test your Docker installation by running the following:
 
-```
+```bash
 docker run hello-world
 ```
 **Example Output**
@@ -43,14 +43,14 @@ It provides a quick view of the containers running on your machine. You have qui
 In this section, you will run an [Alpine Linux](http://www.alpinelinux.org/) container (a lightweight Linux distribution) on your system and get familiar with the `docker run` command.
 
 To get started, let's run the following in our terminal:
-```
+```bash
 docker pull alpine
 ```
 
 > **Note:** Depending on how you've installed docker on your system, you might see a `permission denied` error after running the above command. Try the commands from the Getting Started tutorial to [verify your installation](https://docs.docker.com/engine/getstarted/step_one/#/step-3-verify-your-installation). If you're on Linux, you may need to prefix your `docker` commands with `sudo`. Alternatively you can [create a docker group](https://docs.docker.com/engine/installation/linux/ubuntulinux/#/create-a-docker-group) to get rid of this issue.
 
 The `pull` command fetches the alpine **image** from the **Docker registry** and saves it in your system. You can use the `docker images` command to see a list of all images on your system.
-```
+```bash
 docker images
 ```
 **Example Output**
@@ -63,7 +63,7 @@ hello-world             latest              690ed74de00f       5 months ago     
 ### Docker Run
 Great! Let's now run a Docker **container** based on this image. To do that you are going to use the `docker run` command.
 
-```
+```bash
 docker run alpine ls -l
 ```
 **Example Output**
@@ -87,16 +87,15 @@ When you run `docker run alpine`, you provided a command (`ls -l`), so Docker st
 
 Let's try something more exciting.
 
-```
+```bash
 docker run alpine echo "hello from alpine"
-
 ```
 hello from alpine
 
 OK, that's some actual output. In this case, the Docker client dutifully ran the `echo` command in our alpine container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!
 
 Try another command.
-```
+```bash
 docker run alpine /bin/sh
 ```
 
@@ -107,7 +106,7 @@ You are now inside the container shell and you can try out a few commands like `
 
 Ok, now it's time to see the `docker ps` command. The `docker ps` command shows you all containers that are currently running.
 
-```
+```bash
 docker ps
 ```
 **Example Output**
@@ -118,9 +117,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 **Since no containers are running, you see a blank line. Let's try a more useful variant: `docker ps -a`
 
-```
+```bash
 docker ps -a
 ```
+
 ```bash
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
 36171a5da744        alpine              "/bin/sh"                5 minutes ago       Exited (0) 2 minutes ago                        fervent_newton
@@ -131,7 +131,7 @@ c317d0a9e3d2        hello-world         "/hello"                 34 seconds ago 
 
 What you see above is a list of all containers that you ran. Notice that the `STATUS` column shows that these containers exited a few minutes ago. You're probably wondering if there is a way to run more than just one command in a container. Let's try that now:
 
-```
+```bash
 docker run -it alpine /bin/sh
 ```
 ```bash
@@ -176,9 +176,8 @@ In the last section, you saw a lot of Docker-specific jargon which might be conf
 
 ***Example Launching a container in detached mode*** 
 
-```
+```bash
 docker run --name cname -e MYSQL_ROOT_PASSWORD=yourpassword -d mysql:tag
-
 ```
 In the above command:
 

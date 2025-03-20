@@ -236,7 +236,7 @@ On the other hand, the `database` service uses the official MySQL image and sets
 
 Open a terminal in the project directory and run the following command to start the services:
 
-```
+```bash
 docker-compose up -d
 ```
 

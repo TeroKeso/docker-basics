@@ -1,7 +1,7 @@
 site_name: Devcontainer in codespace with Mkdocs Material
-repo_url: https://hamk-business-information-technology.io/docker-basics/
+repo_url: https://github.com/TeroKeso/docker-basics
 edit_uri: edit/main/docs/ # to let content.action.edit / view redirect to `main`, not `master`
-repo_name: hamk-business-information-technology/docker-basics
+repo_name: TeroKeso/docker-basics
 theme:
   name: material
   logo: assets/favicon/logo_light_pink.png
@@ -44,12 +44,12 @@ theme:
         accent: custom
 
 nav:
-  - 1 Getting started: 1_gettingstarted.md
-  - 2 Docker images: 2_docker_images.md
-  - 3 Docker volumes: 3_dockervolumes.md
-  - 4 Docker compose: 4_dockercompose.md
-  - 5 Docker networks: 5_dockernetworks.md
-  - 6 Docker management: 6_dockermanagement.md
+  - 1 Getting started: index.md
+  - 2 Docker images: 2_docker-images.md
+  - 3 Docker volumes: 3_docker-volumes.md
+  - 4 Docker compose: 4_docker-compose.md
+  - 5 Docker networks: 5_docker-network.md
+#  - 6 Docker management: 6_docker-managament.md
   
 
 

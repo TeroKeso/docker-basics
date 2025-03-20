@@ -61,7 +61,7 @@ The `docker network` command is the main command for configuring and managing co
 
 Run a simple `docker network` command from any of your lab machines.
 
-```
+```bash
 $ docker network
 
 
@@ -87,7 +87,7 @@ The command output shows how to use the command as well as all of the `docker ne
 
 Run a `docker network ls` command to view existing container networks on the current Docker host.
 
-```
+```bash
 $ docker network ls
 NETWORK ID          NAME                DRIVER              SCOPE
 1befe23acd58        bridge              bridge              local
@@ -107,7 +107,7 @@ The `docker network inspect` command is used to view network configuration detai
 
 Use `docker network inspect` to view configuration details of the container networks on your Docker host. The command below shows the details of the network called `bridge`.
 
-```
+```bash
 $ docker network inspect bridge
 [
     {
@@ -150,7 +150,7 @@ The `docker info` command shows a lot of interesting information about a Docker 
 
 Run a `docker info` command on any of your Docker hosts and locate the list of network plugins.
 
-```
+```bash
 $ docker info
 Client:
  Context:    default
@@ -198,7 +198,7 @@ The **bridge** network is the default network for new containers. This means tha
 
 Create a new container.
 
-```
+```bash
 $ docker run --name sleeping-ubuntu -dt ubuntu sleep infinity     
 6dd93d6cdc806df6c7812b6202f6096e43d9a013e56e5e638ee4bfb4ae8779ce
 ```
@@ -208,7 +208,7 @@ This command will create a new container named `sleeping-ubuntu` based on the `u
 
 Inspect the **bridge** network again to see the new container attached to it.
 
-```
+```bash
 $ docker network inspect bridge
 <Snip>
         },
@@ -231,7 +231,7 @@ The output to the previous `docker network inspect` command shows the IP address
 
 Ping the IP address of the container from the shell prompt of your Docker host. Remember to use the IP of the container in **your** environment.
 
-```
+```bash
 $ ping 172.17.0.2
 64 bytes from 172.17.0.2: icmp_seq=1 ttl=64 time=0.069 ms
 64 bytes from 172.17.0.2: icmp_seq=2 ttl=64 time=0.052 ms
@@ -249,22 +249,26 @@ Press `Ctrl-C` to stop the ping. The replies above show that the Docker host can
 Log in to the container, install the `ping`
  program and ping `Yle.fi`.
 
- ```
+
+
+ ```bash
 # Get the ID of the container started in the previous step.
 $ docker ps
 
 CONTAINER ID    IMAGE    COMMAND             CREATED  STATUS  NAMES
 6dd93d6cdc80    ubuntu   "sleep infinity"    5 mins   Up      sleeping-ubuntu
-
+```
+```bash
 # Exec into the container
 $ docker exec -it 6dd93d6cdc80 /bin/bash
-
+```
+```bash
 # Update APT package lists and install the iputils-ping package
 root@6dd93d6cdc80:/# apt update
  
 apt install iputils-ping
-
-
+```
+```bash
 # Ping yle.fi from within the container
 root@6dd93d6cdc80:/# ping yle.fi           
 PING yle.fi (108.156.22.49) 56(84) bytes of data.
@@ -289,7 +293,7 @@ In this step we'll start a new **NGINX** container and map port 8080 on the Dock
 
 Start a new container based off the official NGINX image.
 
-```
+```bash
 $ docker run --name web1 -d -p 8080:80 nginx
 Unable to find image 'nginx:latest' locally
 latest: Pulling from library/nginx
@@ -303,7 +307,7 @@ b747d43fa277ec5da4e904b932db2a3fe4047991007c2d3649e3f0c615961038
 
 Check that the container is running and view the port mapping.
 
-```
+```bash
 $ docker ps
 CONTAINER ID    IMAGE               COMMAND                  CREATED             STATUS              PORTS                           NAMES
 b747d43fa277   nginx               "nginx -g 'daemon off"   3 seconds ago       Up 2 seconds        443/tcp, 0.0.0.0:8080->80/tcp   web1
@@ -322,7 +326,7 @@ Point your web browser to the IP and port 8080 of your Docker host. The followin
 
 If for some reason you cannot open a session from a web browser, you can connect from your Docker host using the `curl` command.
 
-```
+```bash
 $ curl 127.0.0.1:8080
 <!DOCTYPE html>
 <html>
@@ -339,7 +343,6 @@ If you try and curl the IP address on a different port number it will fail.
 > **NOTE:** The port mapping is actually port address translation (PAT).
 
 
-
 # <a name="User"></a>Step 8: Configure User user-defined bridges
 
 So far in the exercises, we have used the default network connection, which has been sufficient for the exercises. However, from the point of view of data security, it is important to isolate different containers from each other if it is not necessary for the containers to talk to each other.
@@ -349,14 +352,14 @@ In addition, in user-defined networks, containers can use the names of other con
 
 
 Lets create a user-defined bridge network named 
-```
+```bash
 docker network create my-nginx
 ```
 
 
 Lets create and start the container. We will start it as a detached process. The -d flag means to start the container detached (in the background). The --rm option means to remove the container once it exits/stops. The -p forwards container 80 port to host 8080 port.
 
-```
+```bash
 docker run --name my-nginx --network my-net -d --rm -p 8080:80 nginx:latest  
 ```
 
@@ -364,19 +367,19 @@ docker run --name my-nginx --network my-net -d --rm -p 8080:80 nginx:latest
 Next we will stop [Step 6](#ping_local) sleeping-ubuntu container if it still running. If you have already stopped it you can skip to docker network command.
 
 
-```
+```bash
 $ docker ps
 
 CONTAINER ID    IMAGE    COMMAND             CREATED  STATUS  NAMES
 6dd93d6cdc80    ubuntu   "sleep infinity"    5 mins   Up      sleeping-ubuntu
-
-
+```
+```bash
 $ docker stop 6dd93d6cdc80
 ```
 
 We will transfer `sleeping-ubuntu` container from default network to your new user define network, start it and inspect the my-net network for successful connection
 
-```
+```bash
 $ docker network connect my-net sleeping-ubuntu
 $ docker start sleeping-ubuntu
 $ docker network inspect my-net
@@ -400,14 +403,14 @@ $ docker network inspect my-net
 
 
 Exec into the container to log in and install the `ping` program if needed.
-```
+```bash
 $ docker exec -it sleeping-ubuntu /bin/bash
 ```
 
 
 Lets ensure that traffic between containers and DNS names work using the ping command
 
-```
+```bash
 $ root@6dd93d6cdc80:/# ping  my-nginx
 PING my-nginx (172.19.0.2) 56(84) bytes of data.
 64 bytes from my-nginx.my-net (172.19.0.2): icmp_seq=1 ttl=64 time=0.094 ms
@@ -423,7 +426,7 @@ This shows that the container  can talk to each other and have a valid connect t
 To remove user define network you have to stop containers then remove them from network. 
 
 
-```
+```bash
 $ docker network disconnect my-net my-nginx 
 $ docker network disconnect my-net sleeping-ubuntu
 $ docker network rm my-net
@@ -438,13 +441,13 @@ Host network setting can not be run in Windows + Docker Desktop environment beca
 
 Lets create and start the container. We will start it as a detached process. The -d flag means to start the container detached (in the background). 
 
-```
+```bash
 $ docker run -d --network host --name hello_nginx nginxdemos/hello
 ```
 
 Point your web browser to the IP and port 80 of your Docker host. The following example shows a web browser pointed to `localhost:80`. You can also open webpage using Docker Desktop. You will see a basic information of the container. 
 
-```
+```bash
 Server address:	172.17.0.2:80
 
 Server name:	ac7bfe9a3569
@@ -458,7 +461,7 @@ URI:	/
 
 To remove the container and free up port 80 we need to stop container. Container will be removed automatically because of --rm option.
 
-```
+```bash
 $ docker container stop hello_nginx
 
 ```
