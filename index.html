@@ -1,0 +1,933 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="2_docker-images/">
+      
+      
+      <link rel="icon" href="assets/favicon/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Getting Started with Docker - Devcontainer in codespace with Mkdocs Material</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/build.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
+      <link rel="stylesheet" href="css/custom.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-with-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Devcontainer in codespace with Mkdocs Material" class="md-header__button md-logo" aria-label="Devcontainer in codespace with Mkdocs Material" data-md-component="logo">
+      
+  <img src="assets/favicon/logo_light_pink.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Devcontainer in codespace with Mkdocs Material
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started with Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TeroKeso/docker-basics" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TeroKeso/docker-basics
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  1 Getting started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="2_docker-images/" class="md-tabs__link">
+        
+  
+    
+  
+  2 Docker images
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="3_docker-volumes/" class="md-tabs__link">
+        
+  
+    
+  
+  3 Docker volumes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="4_docker-compose/" class="md-tabs__link">
+        
+  
+    
+  
+  4 Docker compose
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="5_docker-network/" class="md-tabs__link">
+        
+  
+    
+  
+  5 Docker networks
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Devcontainer in codespace with Mkdocs Material" class="md-nav__button md-logo" aria-label="Devcontainer in codespace with Mkdocs Material" data-md-component="logo">
+      
+  <img src="assets/favicon/logo_light_pink.png" alt="logo">
+
+    </a>
+    Devcontainer in codespace with Mkdocs Material
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TeroKeso/docker-basics" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TeroKeso/docker-basics
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    1 Getting started
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    1 Getting started
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this HAMK page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this HAMK page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up your Computer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-docker-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check your Docker Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-docker-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Docker Dashboard
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-your-first-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running your first Container
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running your first Container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Run
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminologies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-commands-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Commands Cheat Sheet
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2_docker-images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Docker images
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3_docker-volumes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3 Docker volumes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4_docker-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 Docker compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5_docker-network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Docker networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/TeroKeso/docker-basics/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/TeroKeso/docker-basics/raw/main/docs/index.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="getting-started-with-docker">Getting Started with Docker<a class="headerlink" href="#getting-started-with-docker" title="anchor link to this section for reference">&para;</a></h1>
+<p>This tutorial aims to guide you through the process of setting up Docker Desktop and understanding the fundamentals of Docker. By the end of this tutorial, you will be able to run, stop, and remove Docker containers. Let's get started! </p>
+<h2 id="setting-up-your-computer">Setting up your Computer<a class="headerlink" href="#setting-up-your-computer" title="anchor link to this section for reference">&para;</a></h2>
+<p>The <em>getting started</em> guide on Docker has detailed instructions for setting up Docker on <a href="https://docs.docker.com/docker-for-mac/">Mac</a>, <a href="https://docs.docker.com/engine/installation/linux/">Linux</a> and <a href="https://docs.docker.com/desktop/install/windows-install/">Windows</a>.</p>
+<p><em>If you're using Docker for Windows</em> make sure you have <a href="https://docs.docker.com/docker-for-windows/#shared-drives">shared your drive</a>.</p>
+<p><em>Important note</em> If you're using an older version of Windows or MacOS you may need to use <a href="https://docs.docker.com/machine/overview/">Docker Machine</a> instead.</p>
+<p><em>All commands work in either bash or Powershell on Windows</em></p>
+<h2 id="check-your-docker-installation">Check your Docker Installation<a class="headerlink" href="#check-your-docker-installation" title="anchor link to this section for reference">&para;</a></h2>
+<p>Once you are done installing Docker, test your Docker installation by running the following:</p>
+<p><div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</span></code></pre></div>
+<strong>Example Output</strong>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Unable<span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>image<span class="w"> </span><span class="s1">&#39;hello-world:latest&#39;</span><span class="w"> </span>locally
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>latest:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>library/hello-world
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>03f4658f8b78:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>a3ed95caeb02:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Digest:<span class="w"> </span>sha256:8be990ef2aeb16dbcb9271ddfe2610fa6658d13f6dfb8bc72074cc1ca36966a7
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>hello-world:latest
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Hello<span class="w"> </span>from<span class="w"> </span>Docker.
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>This<span class="w"> </span>message<span class="w"> </span>shows<span class="w"> </span>that<span class="w"> </span>your<span class="w"> </span>installation<span class="w"> </span>appears<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>working<span class="w"> </span>correctly.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>...
+</span></code></pre></div></p>
+<h2 id="the-docker-dashboard">The Docker Dashboard<a class="headerlink" href="#the-docker-dashboard" title="anchor link to this section for reference">&para;</a></h2>
+<p>It provides a quick view of the containers running on your machine. You have quick access to container logs, and you can get a shell inside the container. You can easily manage containers, such as stopping, starting, or removing them. 
+<img alt="Docker Dashboard" src="assets/docker.png" title="Docker Dashboard" />.</p>
+<h2 id="running-your-first-container">Running your first Container<a class="headerlink" href="#running-your-first-container" title="anchor link to this section for reference">&para;</a></h2>
+<p>In this section, you will run an <a href="http://www.alpinelinux.org/">Alpine Linux</a> container (a lightweight Linux distribution) on your system and get familiar with the <code>docker run</code> command.</p>
+<p>To get started, let's run the following in our terminal:
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alpine
+</span></code></pre></div></p>
+<blockquote>
+<p><strong>Note:</strong> Depending on how you've installed docker on your system, you might see a <code>permission denied</code> error after running the above command. Try the commands from the Getting Started tutorial to <a href="https://docs.docker.com/engine/getstarted/step_one/#/step-3-verify-your-installation">verify your installation</a>. If you're on Linux, you may need to prefix your <code>docker</code> commands with <code>sudo</code>. Alternatively you can <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/#/create-a-docker-group">create a docker group</a> to get rid of this issue.</p>
+</blockquote>
+<p>The <code>pull</code> command fetches the alpine <strong>image</strong> from the <strong>Docker registry</strong> and saves it in your system. You can use the <code>docker images</code> command to see a list of all images on your system.
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>images
+</span></code></pre></div>
+<strong>Example Output</strong>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>REPOSITORY<span class="w">              </span>TAG<span class="w">                 </span>IMAGE<span class="w"> </span>ID<span class="w">            </span>CREATED<span class="w">             </span>VIRTUAL<span class="w"> </span>SIZE
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>alpine<span class="w">                 </span>latest<span class="w">              </span>c51f86c28340<span class="w">        </span><span class="m">4</span><span class="w"> </span>weeks<span class="w"> </span>ago<span class="w">         </span><span class="m">1</span>.109<span class="w"> </span>MB
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>hello-world<span class="w">             </span>latest<span class="w">              </span>690ed74de00f<span class="w">       </span><span class="m">5</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">        </span><span class="m">960</span><span class="w"> </span>B
+</span></code></pre></div></p>
+<h3 id="docker-run">Docker Run<a class="headerlink" href="#docker-run" title="anchor link to this section for reference">&para;</a></h3>
+<p>Great! Let's now run a Docker <strong>container</strong> based on this image. To do that you are going to use the <code>docker run</code> command.</p>
+<p><div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>alpine<span class="w"> </span>ls<span class="w"> </span>-l
+</span></code></pre></div>
+<strong>Example Output</strong>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>total<span class="w"> </span><span class="m">48</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Mar<span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="m">16</span>:20<span class="w"> </span>bin
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>drwxr-xr-x<span class="w">    </span><span class="m">5</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">           </span><span class="m">360</span><span class="w"> </span>Mar<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">09</span>:47<span class="w"> </span>dev
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>drwxr-xr-x<span class="w">   </span><span class="m">13</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Mar<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">09</span>:47<span class="w"> </span>etc
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Mar<span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="m">16</span>:20<span class="w"> </span>home
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>drwxr-xr-x<span class="w">    </span><span class="m">5</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Mar<span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="m">16</span>:20<span class="w"> </span>lib
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>......
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>......
+</span></code></pre></div>
+What happened? Behind the scenes, a lot of stuff happened. When you call <code>run</code>,
+1. The Docker client contacts the Docker daemon.
+2. The Docker daemon checks local store if the image (alpine in this case) is available locally, and if not, downloads it from Docker Store. (Since we have issued <code>docker pull alpine</code> before, the download step is not necessary)
+3. The Docker daemon creates the container and then runs a command in that container.
+4. The Docker daemon streams the output of the command to the Docker client</p>
+<p>When you run <code>docker run alpine</code>, you provided a command (<code>ls -l</code>), so Docker started the command specified and you saw the listing.</p>
+<p>Let's try something more exciting.</p>
+<p><div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>alpine<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello from alpine&quot;</span>
+</span></code></pre></div>
+hello from alpine</p>
+<p>OK, that's some actual output. In this case, the Docker client dutifully ran the <code>echo</code> command in our alpine container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!</p>
+<p>Try another command.
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>alpine<span class="w"> </span>/bin/sh
+</span></code></pre></div></p>
+<p>Wait, nothing happened! Is that a bug? Well, no. These interactive shells will exit after running any scripted commands, unless they are run in an interactive terminal - so for this example to not exit, you need to <code>docker run -it alpine /bin/sh</code>.</p>
+<p>You are now inside the container shell and you can try out a few commands like <code>ls -l</code>, <code>uname -a</code> and others. Exit out of the container by giving the <code>exit</code> command.</p>
+<p>Ok, now it's time to see the <code>docker ps</code> command. The <code>docker ps</code> command shows you all containers that are currently running.</p>
+<p><div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
+<strong>Example Output</strong></p>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>CONTAINER<span class="w"> </span>ID<span class="w">        </span>IMAGE<span class="w">               </span>COMMAND<span class="w">             </span>CREATED<span class="w">             </span>STATUS<span class="w">              </span>PORTS<span class="w">               </span>NAMES
+</span></code></pre></div>
+<p>**Since no containers are running, you see a blank line. Let's try a more useful variant: <code>docker ps -a</code></p>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-a
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>CONTAINER<span class="w"> </span>ID<span class="w">        </span>IMAGE<span class="w">               </span>COMMAND<span class="w">                  </span>CREATED<span class="w">             </span>STATUS<span class="w">                      </span>PORTS<span class="w">               </span>NAMES
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>36171a5da744<span class="w">        </span>alpine<span class="w">              </span><span class="s2">&quot;/bin/sh&quot;</span><span class="w">                </span><span class="m">5</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">       </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">                        </span>fervent_newton
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>a6a9d46d0b2f<span class="w">        </span>alpine<span class="w">             </span><span class="s2">&quot;echo &#39;hello from alp&quot;</span><span class="w">    </span><span class="m">6</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">       </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">6</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">                        </span>lonely_kilby
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>ff0a5c3750b9<span class="w">        </span>alpine<span class="w">             </span><span class="s2">&quot;ls -l&quot;</span><span class="w">                   </span><span class="m">8</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">       </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">8</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">                        </span>elated_ramanujan
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>c317d0a9e3d2<span class="w">        </span>hello-world<span class="w">         </span><span class="s2">&quot;/hello&quot;</span><span class="w">                 </span><span class="m">34</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">      </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">12</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">                       </span>stupefied_mcclintock
+</span></code></pre></div>
+<p>What you see above is a list of all containers that you ran. Notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago. You're probably wondering if there is a way to run more than just one command in a container. Let's try that now:</p>
+<p><div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>alpine<span class="w"> </span>/bin/sh
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>/<span class="w"> </span><span class="c1"># ls</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>bin<span class="w">      </span>dev<span class="w">      </span>etc<span class="w">      </span>home<span class="w">     </span>lib<span class="w">      </span>linuxrc<span class="w">  </span>media<span class="w">    </span>mnt<span class="w">      </span>proc<span class="w">     </span>root<span class="w">     </span>run<span class="w">      </span>sbin<span class="w">     </span>sys<span class="w">      </span>tmp<span class="w">      </span>usr<span class="w">      </span>var
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>/<span class="w"> </span><span class="c1"># uname -a</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Linux<span class="w"> </span>97916e8cb5dc<span class="w"> </span><span class="m">4</span>.4.27-moby<span class="w"> </span><span class="c1">#1 SMP Wed Oct 26 14:01:48 UTC 2016 x86_64 Linux</span>
+</span></code></pre></div>
+- Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now you can run as many commands in the container as you want. Take some time to run your favorite commands.</p>
+<ul>
+<li>To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As you proceed further, we'll see a few more variants of <code>docker run</code>.</li>
+</ul>
+<h2 id="terminologies">Terminologies<a class="headerlink" href="#terminologies" title="anchor link to this section for reference">&para;</a></h2>
+<p>In the last section, you saw a lot of Docker-specific jargon which might be confusing to some. So before you go further, let's clarify some terminology that is used frequently in the Docker ecosystem.</p>
+<ul>
+<li><em>Images</em> - The file system and configuration of our application which are used to create containers. To find out more about a Docker image, run <code>docker inspect alpine</code>. In the demo above, you used the <code>docker pull</code> command to download the <strong>alpine</strong> image. When you executed the command <code>docker run hello-world</code>, it also did a <code>docker pull</code> behind the scenes to download the <strong>hello-world</strong> image.</li>
+<li><em>Containers</em> - Running instances of Docker images &mdash; containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS. You created a container using <code>docker run</code> which you did using the alpine image that you downloaded. A list of running containers can be seen using the <code>docker ps</code> command.</li>
+<li><em>Docker daemon</em> - The background service running on the host that manages building, running and distributing Docker containers.</li>
+<li><em>Docker client</em> - The command line tool that allows the user to interact with the Docker daemon.</li>
+<li><em>Docker Store</em> - A <a href="https://store.docker.com/">registry</a> of Docker images, where you can find trusted and enterprise ready containers, plugins, and Docker editions. You'll be using this later in this tutorial.</li>
+</ul>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="anchor link to this section for reference">&para;</a></h2>
+<ol>
+<li><strong>Task 1: Find and Run a MySQL Image</strong></li>
+</ol>
+<p>Your task is to search for an appropriate MySQL image from Docker Hub and run the MySQL database service in a container.</p>
+<ol>
+<li><strong>Task 2: Run MySQL Image in Detached Mode</strong></li>
+</ol>
+<p>After finding the suitable MySQL image, run it in detached mode using the <code>docker run</code> command with the <code>-d</code> flag. This mode allows the container to run in the background, freeing up your terminal for other tasks.</p>
+<p>Note: The <code>-d</code> flag enables detached mode, detaching the running container from the terminal/shell and returning your prompt after the container starts.</p>
+<ol>
+<li><strong>Task 3: View Running Containers</strong></li>
+</ol>
+<p>Use the <code>docker ps</code> command to view the list of running containers and verify that your MySQL container is up and running.</p>
+<ol>
+<li><strong>Task 4: Stop and Remove the Container</strong></li>
+</ol>
+<p>To stop the container you just launched, you'll need the container ID. Once you have it, use the <code>docker stop</code> command. Then, if you no longer need the container, remove it using the <code>docker rm</code> command.</p>
+<blockquote>
+<p><strong>Note:</strong> It is not required to specify the entire <code>CONTAINER ID</code>. You can just specify a few starting characters and if it is unique among all the containers that you have launched, the Docker client will intelligently pick it up.</p>
+</blockquote>
+<p><strong><em>Example Launching a container in detached mode</em></strong> </p>
+<p><div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>cname<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>yourpassword<span class="w"> </span>-d<span class="w"> </span>mysql:tag
+</span></code></pre></div>
+In the above command:</p>
+<ul>
+<li><code>--name cname</code> : This sets the name of the container to "cname". You can use this name to easily refer to and manage the container later.</li>
+<li><code>-e MYSQL_ROOT_PASSWORD=yourpassword</code> : This option sets an environment variable for the MySQL container. It sets the MYSQL_ROOT_PASSWORD variable to "yourpassword," which will be used as the root password for the MySQL database.</li>
+<li><code>-d</code> will run the container in detached mode, meaning it will run in the background.</li>
+<li><code>mysql:tag</code>: This part specifies the Docker image to use for the container. In this example, it uses the official MySQL image with a specific tag. The tag represents a specific version or variant of the MySQL image (e.g., latest, 8.0, 5.7, etc.).</li>
+</ul>
+<p><strong><em>Remove all containers since you don't need them any more. Remember to stop before deleting a container</em></strong> 
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>continaername/id
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>docker<span class="w"> </span>remove<span class="w"> </span>continaername/id
+</span></code></pre></div></p>
+<h2 id="docker-commands-cheat-sheet">Docker Commands Cheat Sheet<a class="headerlink" href="#docker-commands-cheat-sheet" title="anchor link to this section for reference">&para;</a></h2>
+<p>Here is a list of commonly used Docker commands for managing containers:</p>
+<ul>
+<li><code>docker start</code>: Start a stopped container.</li>
+<li>
+<p>Example: <code>docker start mycontainer</code></p>
+</li>
+<li>
+<p><code>docker stop</code>: Stop a running container.</p>
+</li>
+<li>
+<p>Example: <code>docker stop mycontainer</code></p>
+</li>
+<li>
+<p><code>docker restart</code>: Stop and then start a container.</p>
+</li>
+<li>
+<p>Example: <code>docker restart mycontainer</code></p>
+</li>
+<li>
+<p><code>docker rm</code>: Remove a container.</p>
+</li>
+<li>
+<p>Example: <code>docker rm mycontainer</code></p>
+</li>
+<li>
+<p><code>docker ps</code>: List running containers.</p>
+</li>
+<li>
+<p>Example: <code>docker ps</code></p>
+</li>
+<li>
+<p><code>docker ps -a</code>: List all containers (including stopped containers).</p>
+</li>
+<li>
+<p>Example: <code>docker ps -a</code></p>
+</li>
+<li>
+<p><code>docker logs</code>: Display the logs of a container.</p>
+</li>
+<li>
+<p>Example: <code>docker logs mycontainer</code></p>
+</li>
+<li>
+<p><code>docker exec</code>: Execute a command inside a running container.</p>
+</li>
+<li>
+<p>Example: <code>docker exec -it mycontainer sh</code></p>
+</li>
+<li>
+<p><code>docker inspect</code>: Display detailed information about a container.</p>
+</li>
+<li>
+<p>Example: <code>docker inspect mycontainer</code></p>
+</li>
+<li>
+<p><code>docker stats</code>: Display real-time resource usage statistics of running containers.</p>
+</li>
+<li>
+<p>Example: <code>docker stats</code></p>
+</li>
+<li>
+<p><code>docker pause</code>: Pause the execution of processes in a running container.</p>
+</li>
+<li>
+<p>Example: <code>docker pause mycontainer</code></p>
+</li>
+<li>
+<p><code>docker unpause</code>: Resume the execution of processes in a paused container.</p>
+</li>
+<li>
+<p>Example: <code>docker unpause mycontainer</code></p>
+</li>
+<li>
+<p><code>docker top</code>: Display the running processes inside a container.</p>
+</li>
+<li>
+<p>Example: <code>docker top mycontainer</code></p>
+</li>
+<li>
+<p><code>docker rename</code>: Rename a container.</p>
+</li>
+<li>
+<p>Example: <code>docker rename mycontainer newname</code></p>
+</li>
+<li>
+<p><code>docker attach</code>: Attach to a running container to view its output or interact with its processes.</p>
+</li>
+<li>Example: <code>docker attach mycontainer</code></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="2_docker-images/" class="md-footer__link md-footer__link--next" aria-label="Next: 2 Docker images">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2 Docker images
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 <a href="https://www.hamk.fi/en/" target="blank" >Häme University of Applied Sciences (HAMK)</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://learn.hamk.fi/" target="_blank" rel="noopener" title="learn.hamk.fi" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m1.135 5.74.035.123-2.736 1.99c.369.261.796.61 1.007.844l.077.104C10.23 11.058 7.78 11.857 5.2 10.982l.02-.16h-.002A6.5 6.5 0 0 1 5.16 9.36c-.75-.003-1.53-.04-2.283-.066l-.516.018c-.1.844-.035 2.135-.025 2.322.35 1.282.298 2.29.295 3.53-.413-1.004-.9-2.098-.416-3.468l-.01-.318c0-.014-.068-1.153.037-2.062l-.408.013-.037-.119C5.792 6.84 8.503 6.218 13.135 5.74m1.623 2.514q1.83 0 2.904.807 1.22.9 1.22 2.658v5.685h-2.734v-5.369q0-1.683-1.39-1.683-1.391 0-1.39 1.683v5.37h-2.735v-5.37q-.001-.776-.293-1.193a5.5 5.5 0 0 0 1.572-1.725q.046.044.088.088.756-.952 2.758-.951m-9.61 3.234c.932.3 1.862.393 2.737.287a4 4 0 0 0-.01.26v5.37H5.143v-5.686q0-.118.005-.23"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/school/hamk/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search", "search.sidebar", "search.suggest", "search.highlight", "toc.integrate"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="js/custom.js"></script>
+      
+    
+  </body>
+</html>
