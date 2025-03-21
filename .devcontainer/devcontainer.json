@@ -31,7 +31,7 @@
   },
   "mounts": [
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-      ],
+      ],//Note : postCreateCommand packages are for updating this material. Remove when teaching. 
         "postCreateCommand": "pip install --upgrade pip && pip install mkdocs mkdocs-github-admonitions-plugin mkdocs-material markitdown",
         "postStartCommand": "nohup bash -c 'sudo chgrp docker /var/run/docker.sock'"
 }
